@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaForums", "LambdaForums\LambdaForums.csproj", "{2EFF813F-306A-4689-ABD1-A27336668606}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaForums", "LambdaForums\LambdaForums.csproj", "{FEFD4D1E-5FCE-4ED4-836F-889EEFBC03A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2EFF813F-306A-4689-ABD1-A27336668606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EFF813F-306A-4689-ABD1-A27336668606}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EFF813F-306A-4689-ABD1-A27336668606}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EFF813F-306A-4689-ABD1-A27336668606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEFD4D1E-5FCE-4ED4-836F-889EEFBC03A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEFD4D1E-5FCE-4ED4-836F-889EEFBC03A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEFD4D1E-5FCE-4ED4-836F-889EEFBC03A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEFD4D1E-5FCE-4ED4-836F-889EEFBC03A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {411AB532-4970-47E8-8A42-F490D5BD37D9}
+		SolutionGuid = {E04009CC-27D9-47DD-AC87-045536BB98BF}
 	EndGlobalSection
 EndGlobal
