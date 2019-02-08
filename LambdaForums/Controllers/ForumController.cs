@@ -43,7 +43,7 @@ namespace LambdaForums.Controllers
             var postListings = posts.Select(post => new PostListingModel
             {
                 Id = post.Id,
-                Author = post.User.Id,
+                AuthorId = post.User.Id,
                 AuthorRating = post.User.Rating,
                 Title = post.Title,
                 DatePosted = post.Created.ToString(),
@@ -57,7 +57,7 @@ namespace LambdaForums.Controllers
                 Forum = BuildForumListing(forum)
             };
 
-            return View();
+            return View(model);
         }
 
         private ForumListingModel BuildForumListing(Post post)
