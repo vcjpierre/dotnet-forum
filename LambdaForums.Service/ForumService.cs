@@ -3,6 +3,7 @@ using LambdaForums.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,7 +31,7 @@ namespace LambdaForums.Service
 
         public IEnumerable<Forum> GetAll()
         {
-            return _context.Forums.Include(forum => forum.Post);
+            return _context.Forums.Include(forum => forum.Posts);
         }
 
         public IEnumerable<ApplicationUser> GetAllActiveUsers()
@@ -40,7 +41,12 @@ namespace LambdaForums.Service
 
         public Forum GetById(int id)
         {
-            throw new NotImplementedException();
+            var forum = _context.Forums.Where(f => f.Id == id)
+                .Include(f => f.Posts).ThenInclude(p => p.User)
+                .Include(f => f.Posts).ThenInclude(p => p.Replies).ThenInclude(r => r.User)
+                .FirstOrDefault();
+
+            return forum;
         }
 
         public Task UpdateforumTitle(int forumId, string newDescription)

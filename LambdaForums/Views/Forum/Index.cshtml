@@ -1,6 +1,5 @@
 ﻿@model LambdaForums.Models.Forum.ForumIndexModel
 
-
 <h1>Forums</h1>
 
 <table class="table table-hover" id="forumIndexTable">
@@ -9,7 +8,9 @@
         {
             <tr>
                 <td>
-                    @forum.Name
+                    <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">
+                        @forum.Name
+                    </a>                    
                 </td>
                 <td>
                     @forum.Description
