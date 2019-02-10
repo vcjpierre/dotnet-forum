@@ -54,8 +54,9 @@ namespace LambdaForums.Controllers
             {
                 ForumName = forum.Title,
                 ForumId = forum.Id,
-                ForumImageUrl = forum.ImageUrl,
-                AuthorName = User.Identity.Name
+                AuthorName = User.Identity.Name,
+                ForumImageUrl = forum.ImageUrl
+                
             };
 
             return View(model);
@@ -69,19 +70,21 @@ namespace LambdaForums.Controllers
             var post = BuildPost(model, user);
 
             await _postService.Add(post);
-            // TODO : Implement User Rating Management
 
-            return RedirectToAction("Index", "Post", post.Id);
+            return RedirectToAction("Index", "Post", new { id = post.Id });
         }
 
         private Post BuildPost(NewPostModel model, ApplicationUser user)
         {
+            var forum = _forumService.GetById(model.ForumId);
+
             return new Post
             {
                 Title = model.Title,
                 Content = model.Content,
                 Created = DateTime.Now,
-                User = user
+                User = user,
+                Forum = forum
             };
         }
 
