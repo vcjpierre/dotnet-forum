@@ -42,7 +42,7 @@ namespace LambdaForums.Controllers
 
             return new HomeIndexModel
             {
-                LatestsPosts = posts,
+                LatetsPosts = posts,
                 SearchQuery = ""
             };
         }

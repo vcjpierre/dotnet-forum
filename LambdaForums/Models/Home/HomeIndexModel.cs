@@ -9,6 +9,6 @@ namespace LambdaForums.Models.Home
     public class HomeIndexModel
     {
         public string SearchQuery { get; set; }
-        public IEnumerable<PostListingModel> LatestsPosts { get; set; }
+        public IEnumerable<PostListingModel> LatetsPosts { get; set; }
     }
 }
