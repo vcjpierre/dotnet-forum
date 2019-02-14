@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LambdaForums.Data;
+using LambdaForums.Data.Models;
+using LambdaForums.Models;
+using LambdaForums.Models.Forum;
+using LambdaForums.Models.Home;
+using LambdaForums.Models.Post;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using LambdaForums.Models;
-using LambdaForums.Models.Home;
-using LambdaForums.Data;
-using LambdaForums.Models.Post;
-using LambdaForums.Data.Models;
-using LambdaForums.Models.Forum;
 
 namespace LambdaForums.Controllers
 {
