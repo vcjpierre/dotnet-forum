@@ -42,11 +42,12 @@ namespace LambdaForums.Controllers
                 PostContent = post.Content,
                 Replies = replies,
                 ForumId = post.Forum.Id,
-                ForumName = post.Forum.Title
+                ForumName = post.Forum.Title,
+                IsAuthorAdmin = IsAuthorAdmin(post.User)
             };
 
             return View(model);
-        }
+        }        
 
         public IActionResult Create(int id)
         {
@@ -90,6 +91,11 @@ namespace LambdaForums.Controllers
             };
         }
 
+        private bool IsAuthorAdmin(ApplicationUser user)
+        {
+            return _userManager.GetRolesAsync(user).Result.Contains("Admin");
+        }
+
         private IEnumerable<PostReplyModel> BuildPostReplies(IEnumerable<PostReply> replies)
         {
             return replies.Select(reply => new PostReplyModel
@@ -100,7 +106,8 @@ namespace LambdaForums.Controllers
                 AuthorImageUrl = reply.User.ProfileImageUrl,
                 AuthorRating = reply.User.Rating,
                 Created = reply.Created,
-                ReplyContent = reply.Content
+                ReplyContent = reply.Content,
+                IsAuthorAdmin = IsAuthorAdmin(reply.User)
             });
         }
     }
