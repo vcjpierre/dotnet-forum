@@ -29,6 +29,7 @@
 .sectionHeader {
     background-color: rgba(0, 0, 0, 0.9);
     padding: 8px 0 24px 24px;
+    color: white !important;
 }
 
 .sectionHeading {
@@ -67,8 +68,9 @@
 }
 
 .sectionDescription {
-    font-size: 3.2em;
-    margin: 16px 0;
+    /*font-size: 3.2em;*/
+    margin: 15px 0;
+    color: white !important
 }
 
 .frontPageHeading {
