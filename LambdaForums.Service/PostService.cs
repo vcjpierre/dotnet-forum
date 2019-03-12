@@ -52,9 +52,13 @@ namespace LambdaForums.Service
                    .First();
         }
 
-        public IEnumerable<Post> GetFilteredPost(string searchQuery)
-        {
-            throw new NotImplementedException();
+        public IEnumerable<Post> GetFilteredPosts(Forum forum, string searchQuery)
+        {            
+            return string.IsNullOrEmpty(searchQuery)
+                ? forum.Posts 
+                : forum.Posts.Where(post 
+                    => post.Title.Contains(searchQuery)
+                    || post.Content.Contains(searchQuery));
         }
 
         public IEnumerable<Post> GetLatestPost(int n)

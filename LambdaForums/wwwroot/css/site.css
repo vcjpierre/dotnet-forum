@@ -117,6 +117,23 @@
     margin: 4px 0 16px 0;
 }
 
+/* forum Topic Page */
+.searchBar {
+    padding: 3px 5px 12px;
+    margin: 8px;
+    background-color: #333;
+    width: 15%;
+    transition: ease 3s;
+    border: none;
+}
+
+.searchBar:focus {
+    color: black;
+    width: 60%;
+    background-color: #fff;
+}
+
+
 /* Post Page */
 .postTitle {
     font-family: 'Roboto';
@@ -182,7 +199,7 @@
 
 #postIndexContent {
     background-color: white;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
 }
 
 .postHeader {
@@ -259,7 +276,18 @@
     color: #fff !important;
 }
 
+.btn-forumSearch {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+}
+
 /* Forum Index */
+.table {
+    background-color: white;
+}
+
 #forumIndextable td {
     background-color: rgba(255, 255, 255, 0.9);
 }
