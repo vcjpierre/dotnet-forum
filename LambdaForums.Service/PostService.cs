@@ -61,6 +61,13 @@ namespace LambdaForums.Service
                     || post.Content.Contains(searchQuery));
         }
 
+        public IEnumerable<Post> GetFilteredPosts(string searchQuery)
+        {
+            return GetAll().Where(post
+                => post.Title.Contains(searchQuery)
+                || post.Content.Contains(searchQuery));
+        }
+
         public IEnumerable<Post> GetLatestPost(int n)
         {
             return GetAll().OrderByDescending(post => post.Created).Take(n);
