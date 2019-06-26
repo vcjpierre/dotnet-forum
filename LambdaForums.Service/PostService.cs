@@ -79,5 +79,11 @@ namespace LambdaForums.Service
                 .Where(forum => forum.Id == id).First()
                 .Posts;
         }
+
+        public async Task AddReply(PostReply reply)
+        {
+            _context.PostReplies.Add(reply);
+            await _context.SaveChangesAsync();
+        }
     }
 }

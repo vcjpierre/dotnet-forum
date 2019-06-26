@@ -23,6 +23,7 @@ namespace LambdaForums.Controllers
             _userManager = userManager;
             _userService = userService;
             _uploadService = uploadService;
+            _configuration = configuration;
         }
 
         public IActionResult Detail(string id)

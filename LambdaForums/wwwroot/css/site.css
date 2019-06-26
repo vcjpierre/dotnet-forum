@@ -351,17 +351,25 @@
     background-color: #fff !important;
 }
 
+#userProfileImage {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background-color: #ddd;
+    background-size: cover;
+}
+
 #userEmailLabel, #userBioLabel, #userCreatedLabel, #userRating, #userActiveLabel {
     display: block;
     color: #444;
-    font-family: 'Roboto Mono for Powerline';
+    font-family: 'Roboto';
     padding-top: 3px;
 }
 
 #userName {
     display: block;
     color: #2569d5;
-    font-family: 'Roboto';
+    font-family: 'Roboto Mono';
     font-size: 1.7em;
 }
 
