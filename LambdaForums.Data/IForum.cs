@@ -10,10 +10,15 @@ namespace LambdaForums.Data
     {
         Forum GetById(int id);
         IEnumerable<Forum> GetAll();
-        IEnumerable<ApplicationUser> GetAllActiveUsers();
-
+        IEnumerable<ApplicationUser> GetActiveUsers(int forumId);
+        Task Add(Models.Forum forum);
+        Task SetForumImage(int id, Uri uri);
         Task Create(Forum forum);
         Task Delete(int forumId);
-        Task UpdateforumTitle(int forumId, string newDescription);
+        Task UpdateForumTitle(int forumId, string newDescription);
+        Task UpdateForumDescription(int id, string description);
+        Post GetLatestPost(int forumId);
+        IEnumerable<Post> GetFilteredPosts(string searchQuery);
+        IEnumerable<Post> GetFilteredPosts(int forumId, string modelSearchQuery);
     }
 }

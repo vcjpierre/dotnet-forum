@@ -35,7 +35,7 @@
 
 @if(User.Identity.IsAuthenticated)
 {
-    <div class="row">
+    <div class="row padding-top-bottom">
         <span>
             <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply">Post Reply</a>
         </span>
@@ -48,7 +48,7 @@
     {
         <div class="row replyContent">
             <div class="col-md-3 replyAuthorContainer">
-                <div class="postAuthorContainer" style="background-image: url(@reply.AuthorImageUrl)"></div>
+                <div class="postAuthorContainer" style="background-image: url(@reply.AuthorImageUrl); height:80px; width:80px; background-size: cover;"></div>
                 <a asp-controller="Profile" asp-action="Detail" asp-route-id="@reply.AuthorId">@reply.AuthorName</a>
                 @if (reply.IsAuthorAdmin)
                 {

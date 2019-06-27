@@ -26,10 +26,11 @@ namespace LambdaForums.Service
             return GetAll().FirstOrDefault(user => user.Id == id);
         }
 
-        public Task IncrementRating(string id)
+        public ApplicationUser GetByName(string name)
         {
-            throw new NotImplementedException();
+            return _context.ApplicationUsers.FirstOrDefault(user => user.UserName == name);
         }
+
 
         public async Task SetProfileImage(string id, Uri uri)
         {
@@ -40,19 +41,50 @@ namespace LambdaForums.Service
             
         }
 
-        public Task Add(ApplicationUser user)
+        public async Task Add(ApplicationUser user)
         {
-            throw new NotImplementedException();
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+        }        
+
+        public async Task Deactivate(ApplicationUser user)
+        {
+            user.IsActive = false;
+            _context.Update(user);
+            await _context.SaveChangesAsync();
         }
 
-        public Task BumpRating(string userId, Type type)
+        public async Task IncrementRating(string id)
         {
-            throw new NotImplementedException();
+            var user = GetById(id);
+            user.Rating += 1;
+            _context.Update(user);
+            await _context.SaveChangesAsync();
         }
 
-        public Task Deactivate(ApplicationUser user)
+        public async Task BumpRating(string userId, Type type)
         {
-            throw new NotImplementedException();
-        }                            
+            var user = GetById(userId);
+            var increment = GetIncrement(type);
+            user.Rating += increment;
+            await _context.SaveChangesAsync();
+        }
+
+        private static int GetIncrement(Type type)
+        {
+            var bump = 0;
+
+            if (type == typeof(Post))
+            {
+                bump = 3;
+            }
+
+            if (type == typeof(PostReply))
+            {
+                bump = 2;
+            }
+
+            return bump;
+        }
     }
 }
