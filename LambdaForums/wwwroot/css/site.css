@@ -216,21 +216,52 @@
     padding: 8px 0px 24px 24px;
 }
 
+#replyDivider {
+    height: 2px;
+    margin-bottom: 12px;
+}
+
 #headingBtn {
     float: right;
     margin-right: 20px;
 }
 
-/* Reply */
+/* Replies */
 
-.padding-top-bottom {
-    padding-top: 10px;
-    padding-bottom: 10px;
+#postReplyRow {
+    background-color: #3f51b5;
+    padding: 8px;
 }
 
 .replyContent {
-    background-color: white;
+    display: table;
+    background-color: #fff;
+    border-bottom: 1px solid #aaa;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+    width: inherit;
+}
+
+.replyContentContainer, .replyAuthorContainer {
+    display: table-cell;
+    padding: 12px;
+}
+
+.isAdmin {
+    display: inline-block;
+    padding: 3px;
+    background-color: #ffeb3b;
+    color: #000;
+    font-family: 'Roboto Mono';
+}
+
+.smaller {
+    font-size: 0.8em;
+}
+
+#originalPost {
+    background-color: #fff;
+    padding: 12px;
+    margin-bottom: 8px;
 }
 
 /* Custom Bottons*/
@@ -366,17 +397,25 @@
 }
 
 /* User Profiles */
-.userProfile {
+.userProfileDetail {
     padding: 32px 0 64px 24px;
     background-color: #fff !important;
 }
 
-#userProfileImage {
+.userProfile {
+    height: 140px;
+    width: 140px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#userProfilePic {
     display: inline-block;
     width: 200px;
     height: 200px;
     background-color: #ddd;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #userEmailLabel, #userBioLabel, #userCreatedLabel, #userRating, #userActiveLabel {
@@ -399,6 +438,15 @@
     padding: 24px;
 }
 
+.authorBlock {
+    padding: 18px;
+    border: 1px dashed #00afcf;
+    margin-bottom: 8px;
+}
+
+.noBorder {
+    border: none;
+}
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
