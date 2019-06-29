@@ -1,16 +1,19 @@
 ﻿using LambdaForums.Data;
 using LambdaForums.Data.Models;
 using LambdaForums.Models.ApplicationUser;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace LambdaForums.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -23,6 +26,7 @@ namespace LambdaForums.Controllers
             _userManager = userManager;
             _userService = userService;
             _uploadService = uploadService;
+            _configuration = configuration;
         }
 
         public IActionResult Detail(string id)
@@ -34,7 +38,7 @@ namespace LambdaForums.Controllers
             {
                 UserId = user.Id,
                 UserName = user.UserName,
-                UseRating = user.Rating.ToString(),
+                UserRating = user.Rating.ToString(),
                 Email = user.Email,
                 ProfileImageUrl = user.ProfileImageUrl,
                 MemberSince = user.MemberSince,
@@ -51,7 +55,7 @@ namespace LambdaForums.Controllers
 
             var connectionString = _configuration.GetConnectionString("AzureStorageAccountConnectionString");
 
-            var container = _uploadService.GetBlobContainer(connectionString);
+            var container = _uploadService.GetBlobContainer(connectionString, "profile-images");
 
             var parsedContentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
 
@@ -64,6 +68,35 @@ namespace LambdaForums.Controllers
             await _userService.SetProfileImage(userId, blockBlob.Uri);
 
             return RedirectToAction("Detail", "Profile", new { id = userId });
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Index()
+        {
+            var profiles = _userService.GetAll()
+                .OrderByDescending(user => user.Rating)
+                .Select(u => new ProfileModel
+                {
+                    Email = u.Email,
+                    ProfileImageUrl = u.ProfileImageUrl,
+                    UserRating = u.Rating.ToString(),
+                    MemberSince = u.MemberSince,
+                    IsActive = u.IsActive
+                });
+
+            var model = new ProfileListModel
+            {
+                Profiles = profiles
+            };
+
+            return View(model);
+        }
+
+        public IActionResult Deactivate(string userId)
+        {
+            var user = _userService.GetById(userId);
+            _userService.Deactivate(user);
+            return RedirectToAction("Index", "Profile");
         }
     }
 }

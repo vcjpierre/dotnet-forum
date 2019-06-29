@@ -18,7 +18,7 @@
             @Model.AuthorName
         </a>
         <br />
-        <span class="postData">@Model.Created</span>
+        <span class="postDate">@Model.Created</span>
         @if (Model.IsAuthorAdmin)
         {
             <span class="isAdmin smaller">Admin</span>
@@ -35,7 +35,7 @@
 
 @if(User.Identity.IsAuthenticated)
 {
-    <div class="row">
+    <div class="row" id="postReplyRow">
         <span>
             <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply">Post Reply</a>
         </span>
@@ -48,16 +48,16 @@
     {
         <div class="row replyContent">
             <div class="col-md-3 replyAuthorContainer">
-                <div class="postAuthorContainer" style="background-image: url(@reply.AuthorImageUrl)"></div>
+                <div class="postAuthorContainer" style="background-image: url(@reply.AuthorImageUrl); height:80px; width:80px; background-size: cover;"></div>
                 <a asp-controller="Profile" asp-action="Detail" asp-route-id="@reply.AuthorId">@reply.AuthorName</a>
                 @if (reply.IsAuthorAdmin)
                 {
                     <div class="isAdmin smaller">Admin</div>
                     <br />
                 }
-                    <span>@reply.Created</span>
+                    <span class="postDate">@reply.Created</span>
             </div>
-            <div class="col-md-9 replyCOntentContainer">
+            <div class="col-md-9 replyContentContainer">
                 <div class="postContent">
                     @Html.Raw(reply.ReplyContent)
                 </div>

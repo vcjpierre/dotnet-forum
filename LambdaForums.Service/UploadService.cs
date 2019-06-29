@@ -14,11 +14,11 @@ namespace LambdaForums.Service
             Configuration = configuration;
         }
 
-        public CloudBlobContainer GetBlobContainer(string connectionString)
+        public CloudBlobContainer GetBlobContainer(string connectionString, string containerName)
         {
             var storageAccount = CloudStorageAccount.Parse(connectionString);
             var blobClient = storageAccount.CreateCloudBlobClient();
-            return blobClient.GetContainerReference("images");
+            return blobClient.GetContainerReference(containerName);
         }
     }
 }

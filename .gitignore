@@ -262,3 +262,4 @@ __pycache__/
 
 # wwwroot
 wwwroot
+/LambdaForums.Data/Migrations

@@ -22,7 +22,7 @@
             </form>
         </div>
         <div class="sectionDescription">
-            <div class="forumLogo" style="background-image: url(@Model.Forum.ImageUrl)"></div>
+            <div class="forumLogo" style="background-image: url(@Model.Forum.ImageUrl); background-size: cover"></div>
             <p>Welcome to the @Model.Forum.Name forum. Please keep posts friendly and on-topic.</p>
             @if (!User.Identity.IsAuthenticated)
             {
