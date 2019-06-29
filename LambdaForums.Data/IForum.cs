@@ -10,7 +10,7 @@ namespace LambdaForums.Data
     {
         Forum GetById(int id);
         IEnumerable<Forum> GetAll();
-        IEnumerable<ApplicationUser> GetActiveUsers(int forumId);
+        IEnumerable<ApplicationUser> GetActiveUsers(int id);
         Task Add(Models.Forum forum);
         Task SetForumImage(int id, Uri uri);
         Task Create(Forum forum);
@@ -20,5 +20,6 @@ namespace LambdaForums.Data
         Post GetLatestPost(int forumId);
         IEnumerable<Post> GetFilteredPosts(string searchQuery);
         IEnumerable<Post> GetFilteredPosts(int forumId, string modelSearchQuery);
+        bool HasRecentPost(int id);
     }
 }

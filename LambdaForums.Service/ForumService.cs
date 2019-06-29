@@ -38,16 +38,18 @@ namespace LambdaForums.Service
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<ApplicationUser> GetActiveUsers(int forumId)
+        public IEnumerable<ApplicationUser> GetActiveUsers(int id)
         {
-            var posts = GetById(forumId).Posts;
+            var posts = GetById(id).Posts;
 
-            if (posts == null || !posts.Any())
+            if (posts != null || !posts.Any())
             {
-                return new List<ApplicationUser>();
+                var postUsers = posts.Select(p => p.User);
+                var replyUsers = posts.SelectMany(p => p.Replies).Select(r => r.User);
+                return postUsers.Union(replyUsers).Distinct();
             }
 
-            return _postService.GetAllUsers(posts);
+            return new List<ApplicationUser>();
         }
 
         public IEnumerable<Forum> GetAll()
@@ -92,6 +94,13 @@ namespace LambdaForums.Service
         public Post GetLatestPost(int forumId)
         {
             throw new NotImplementedException();
+        }
+
+        public bool HasRecentPost(int id)
+        {
+            const int hoursAgo = 12;
+            var window = DateTime.Now.AddHours(-hoursAgo);
+            return GetById(id).Posts.Any(post => post.Created > window);
         }
 
         public Task SetForumImage(int id, Uri uri)

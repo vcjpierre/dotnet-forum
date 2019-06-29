@@ -264,6 +264,15 @@
     margin-bottom: 8px;
 }
 
+.hasRecentPost {
+    padding: 2px;
+    background-color: #fe552f;
+    color: #fff;
+    text-align: center;
+    border-radius: 1px;
+    width: 30px;
+}
+
 /* Custom Bottons*/
 .btn-back {
     background-color: #555;
@@ -375,14 +384,13 @@
     height: 40px;
     width: 40px;
     background-color: #ddd;
-    background-size: 100%;
+    background-size: cover;
     border: 1px solid #555;
 }
 
 .forumPostCount {
     color: #888;
     font-family: 'Roboto Mono';
-    font-size: 0.9px;
 }
 
 .forumIndexContent {
