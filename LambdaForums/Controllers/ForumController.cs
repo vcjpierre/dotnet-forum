@@ -2,6 +2,7 @@
 using LambdaForums.Data.Models;
 using LambdaForums.Models.Forum;
 using LambdaForums.Models.Post;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +18,6 @@ namespace LambdaForums.Controllers
 {
     public class ForumController : Controller
     {
-
         private readonly IForum _forumService;
         private readonly IPost _postService;
         private readonly IUpload _uploadService;
@@ -86,25 +86,9 @@ namespace LambdaForums.Controllers
         public IActionResult Search(int id, string searchQuery)
         {
             return RedirectToAction("Topic", new { id, searchQuery });
-        }       
+        }              
 
-        private ForumListingModel BuildForumListing(Post post)
-        {
-            var forum = post.Forum;
-            return BuildForumListing(forum);
-        }
-
-        private ForumListingModel BuildForumListing(Forum forum)
-        {        
-            return new ForumListingModel
-            {
-                Id = forum.Id,
-                Name = forum.Title,
-                Description = forum.Description,
-                ImageUrl = forum.ImageUrl
-            };
-        }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             var model = new AddForumModel();
@@ -112,6 +96,7 @@ namespace LambdaForums.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddForum(AddForumModel model)
         {
 
@@ -138,6 +123,23 @@ namespace LambdaForums.Controllers
 
             await _forumService.Create(forum);
             return RedirectToAction("Index", "Forum");
+        }
+
+        private ForumListingModel BuildForumListing(Post post)
+        {
+            var forum = post.Forum;
+            return BuildForumListing(forum);
+        }
+
+        private ForumListingModel BuildForumListing(Forum forum)
+        {
+            return new ForumListingModel
+            {
+                Id = forum.Id,
+                Name = forum.Title,
+                Description = forum.Description,
+                ImageUrl = forum.ImageUrl
+            };
         }
 
         private CloudBlockBlob UploadForumImage(IFormFile file)

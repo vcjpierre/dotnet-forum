@@ -1,6 +1,7 @@
 ﻿using LambdaForums.Data;
 using LambdaForums.Data.Models;
 using LambdaForums.Models.Reply;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace LambdaForums.Controllers
 {
+    [Authorize]
     public class ReplyController : Controller
     {
         private readonly IForum _forumService;
