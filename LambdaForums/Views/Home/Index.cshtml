@@ -25,23 +25,29 @@
                         <div class="postTitle">
                             <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
                                 @post.Title
-                            </a>
+                            </a>                            
                         </div>
                         <div class="postSubtitle">
                             @if (post.RepliesCount == 1)
                             {
-                                <span>@post.RepliesCount Reply</span>
+                                <span>@post.RepliesCount Reply | </span>
                             }
                             @if (post.RepliesCount == 0)
                             {
-                                <span>No Replies</span>
+                                <span>No Replies | </span>
                             }
                             else
                             {
-                                <span>@post.RepliesCount Replies</span>
+                                <span>@post.RepliesCount Replies | </span>
                             }
                             <span class="postUser">
                                 <a asp-controller="Profile" asp-action="Detail" asp-route-id="@post.AuthorId">@post.Author</a>
+                            </span>
+                            <span>
+                                | @post.Forum.Name
+                            </span>
+                            <span>
+                                | on @post.DatePosted
                             </span>
                         </div>
                     </td>

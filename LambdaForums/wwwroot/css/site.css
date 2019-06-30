@@ -18,17 +18,8 @@
     background-repeat: no-repeat;
     background-position: center;
     padding-right: 16px;
-    width: 130px;
+    width: 120px;
     margin-right: 12px;
-}
-
-.top-30 {
-    padding-top:30px;
-}
-
-.form-auth {
-    background: rgba(255,255,255,0.9);
-    padding-bottom: 20px;
 }
 
 .navbar li {
@@ -163,6 +154,7 @@
     color: #888;
     font-family: 'Roboto Mono';
     font-size: 0.8em;
+    display: block;
 }
 
 .postLogo {
@@ -298,11 +290,19 @@
     transition: ease-in 0.1s;
 }
 
+#upload {
+    align-items: center;
+    padding-bottom: 15px;
+}
+
 .btn-file {
     color: white;
-    width: 100%;
+    width: 200px;
     background-color: #4fc3f7;
-    transition: ease-in 0.3s;
+}
+
+.btn-upload {
+    width: 100%;
 }
 
 .btn-file:hover {
@@ -341,6 +341,10 @@
     border: none;
     padding: 0 !important;
     font: inherit;
+}
+
+#registerBtn {
+    background-color: #005c5e;
 }
 
 /* Forum Index */
@@ -402,6 +406,12 @@
     text-align: center;
     padding-top: 30px;
     font-family: 'Roboto Mono';
+}
+
+#createForumForm {
+    padding: 15px;
+    width:800px;
+    margin:0 auto;
 }
 
 /* User Profiles */
